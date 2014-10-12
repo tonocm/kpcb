@@ -1,0 +1,94 @@
+import java.io.*;
+
+class Contest{
+  
+  static BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+  
+  public static void main(String[] args) throws IOException{
+      
+    int maxLength, intMenu;
+    boolean flag = true;
+    String menu;
+      
+    if(args.length != 1){
+     System.out.println("Please specify the maximum length of your queue");
+     maxLength = Integer.parseInt(stdIn.readLine());
+    }
+    else
+      maxLength = Integer.parseInt(args[0]);
+    
+    
+    Queue queue = new Queue(maxLength);
+    
+    while(flag){
+      System.out.println("Would you like to:\n 1 - Add an item\n 2 - Delete an item\n 3 - Print your queue\n 4 - Exit");
+      
+      menu = stdIn.readLine().toLowerCase();
+      try{
+        intMenu = Integer.parseInt(menu);
+      }
+      catch(NumberFormatException e){
+        /* Landing here means that menu is indeed a String */
+        intMenu = -1;
+      }
+      
+      if(intMenu != -1){
+        
+        switch(intMenu){
+          case 1:
+          {
+            menu = "add";
+          }
+          break;
+          case 2:
+          {
+            menu = "delete";
+          }
+          break;
+          case 3:
+          {
+            menu = "print";
+          }
+          break;
+          case 4:
+          {
+            menu = "exit";
+            flag = false;
+            intMenu = -99;
+          }
+          break;
+          default:
+          {
+            System.out.println("Something went wrong with your input, please try again...");
+            intMenu = -99;
+          }
+          break;
+        }
+      }
+      if(intMenu != -99){
+        if(menu.equals("add"))
+          add(maxLength, curLength);
+        else if(menu.equals("delete"))
+          delete();
+        else if(menu.equals("print"))
+          print();
+      }
+      
+        intMenu = 0; //resetting var. 
+    }
+  }
+  public static void add(int maxLength, int curLength) throws IOException{
+    
+    int value;
+    
+    System.out.println("You still have " + queue.space + " spots left."); 
+    System.out.println("Please enter the value you want to add to the queue");
+    value = Integer.parseInt(stdIn.readLine());
+  }
+  public static void delete(){
+    
+  }
+  public static void print(){
+  
+  }
+}
